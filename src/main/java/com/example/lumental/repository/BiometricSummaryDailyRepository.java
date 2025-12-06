@@ -13,5 +13,8 @@ public interface BiometricSummaryDailyRepository extends JpaRepository<Biometric
      * userId + summaryDate 조합은 하루 하나의 요약 데이터가 존재해야 한다.
      * → SummaryDaily의 UniqueConstraint( user_id, summary_date )와 1:1 매칭
      */
-    Optional<BiometricSummaryDaily> findByUserAndSummaryDate(User user, LocalDate summaryDate);
+    Optional<BiometricSummaryDaily> findByUserIdAndSummaryDate(Long userId, LocalDate summaryDate);
+    Optional<BiometricSummaryDaily> findTopByUserIdOrderBySummaryDateDesc(Long userId);
+    Optional<BiometricSummaryDaily> findFirstByUserIdOrderBySummaryDateDesc(Long userId);
+
 }

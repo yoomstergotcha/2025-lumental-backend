@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  autoconfigure:
+    exclude:
+      - com.google.cloud.spring.autoconfigure.*
+  sql:
+    init:
+      mode: never
+
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB

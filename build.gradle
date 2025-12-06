@@ -1,0 +1,85 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.5'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = '생체데이터 기반 정신건강 분석 프로젝트'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+ext {
+	set('springCloudGcpVersion', "7.4.1")
+	set('springCloudVersion', "2023.0.3")    // ✔ 존재하는 Spring Cloud BOM
+}
+
+dependencies {
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Core Spring Boot Starters
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// Database
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// Cloud SQL Connector (latest)
+
+
+	// Reactor Netty (WebClient dependency)
+	implementation 'io.projectreactor.netty:reactor-netty-http'
+
+	// Test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	//implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub'
+	//implementation 'org.springframework.cloud:spring-cloud-stream'
+
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-binder'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'com.google.cloud:google-cloud-storage:2.27.0'
+
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+test {
+	enabled = false
+}

@@ -41,7 +41,9 @@ public class BiometricRaw {
     private Double valueNumeric;
 
     // JSONB(수면 단계 구간, 복합 데이터 등) -> 일단 String으로 저장
-    @Column(name = "value_json", columnDefinition = "jsonb")
+
+
+    @Column(columnDefinition = "text")
     private String valueJson;
 
     // apple_watch / iphone / manual 등
