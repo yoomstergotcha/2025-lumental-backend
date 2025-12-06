@@ -7,10 +7,10 @@ Lumental은 웨어러블 디바이스에서 수집된 생체지표(Physiological
 ### [PART 1] Physiological Intelligence Engine
 웨어러블 데이터로부터 사용자의 스트레스 상태 및 생리적 안정도 분석
 
-Data Collector: HealthKit export.xml 파일 parse
-Preprocessing Module: 결측치 보정, Z-score / Baseline 편차 계산
-Stress Index Analyzer: HRV, 수면, 활동량 기반 스트레스 지수 산출
-Confidence Scorer: 착용률 및 데이터 커버율 기반 신뢰도 산출
+- Data Collector: HealthKit export.xml 파일 parse
+- Preprocessing Module: 결측치 보정, Z-score / Baseline 편차 계산
+- Stress Index Analyzer: HRV, 수면, 활동량 기반 스트레스 지수 산출
+- Confidence Scorer: 착용률 및 데이터 커버율 기반 신뢰도 산출
 ### [PART 2] Cognitive Interaction Engine
 생체지표 + 대화 컨텍스트를 결합해 GPT-4o 기반 맞춤 피드백 생성
 
